@@ -1,2 +1,3 @@
-body {
-    background-color: beige;}
+body {background-color: beige;}
+
+input[type=text] {width: 400px;}

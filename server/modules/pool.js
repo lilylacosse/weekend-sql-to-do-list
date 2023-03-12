@@ -1,13 +1,10 @@
-// Already installed pg in server.js terminal steps
-// npm install pg
+// need pg to create and access pool
 const pg = require("pg");
 
-const pool = {
-  pool = new pg.Pool({
-    host: "localhost",
-    port: 5432,
-    database: "<RENAME>",
-  });
-}
+const pool = new pg.Pool({
+  host: "localhost",
+  port: 5432,
+  database: "weekend-to-do-app",
+});
 
 module.exports = pool;
