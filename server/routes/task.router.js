@@ -31,20 +31,20 @@ router.post("/", (req, res) => {
     });
 });
 
-// //READ - GET
-// router.get("/", (req, res) => {
-//   const queryText = `SELECT * FROM <!!!!>;`;
-//   pool
-//     .query(queryText)
-//     .then((result) => {
-//       console.log(`Query SUCCESS! : ${queryText}`);
-//       res.send(result.rows);
-//     })
-//     .catch((err) => {
-//       console.log(`Query ERROR ${queryText}:`, err);
-//       res.sendStatus(500);
-//     });
-// });
+//READ - GET
+router.get("/", (req, res) => {
+  const queryText = `SELECT * FROM "to-do";`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log(`Query SUCCESS! : ${queryText}`);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log(`Query ERROR ${queryText}:`, err);
+      res.sendStatus(500);
+    });
+});
 
 // //UPDATE - PUT
 // // !!!!!!!!!!!!!!!!!!!!
