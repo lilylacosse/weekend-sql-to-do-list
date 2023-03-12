@@ -46,25 +46,28 @@ router.get("/", (req, res) => {
     });
 });
 
-// //UPDATE - PUT
-// // !!!!!!!!!!!!!!!!!!!!
-// router.put("/:COLUMN-NAME", (req, res) => {
-//   let what = req.params.what;
-//   const queryText = `;`;
-//   pool
-//     .query(queryText, [what])
-//     .then((dbResponse) => {
-//       console.log(`Query SUCCESS! : ${queryText}`);
-//       res.send(dbResponse.rows);
-//     })
-//     .catch((err) => {
-//       console.log(`Query ERROR ${queryText}:`, err);
-//       res.sendStatus(500);
-//     });
-// });
+//UPDATE - PUT
+// !!!!!!!!!!!!!!!!!!!!
+router.put("/:id", (req, res) => {
+  let idToAlter = req.params.id;
+  console.log("idToAlter:", idToAlter);
+  let complete = req.body.taskStat;
+  complete = !complete;
+  console.log("complete:", complete);
+  const queryText = `UPDATE "to-do" SET complete=$1 WHERE id=$2;`;
+  pool
+    .query(queryText, [true, idToAlter])
+    .then((dbResponse) => {
+      console.log(`Query SUCCESS! : ${queryText}`);
+      res.send(dbResponse.rows);
+    })
+    .catch((error) => {
+      console.log(`Query ERROR ${queryText}:`, error);
+      res.sendStatus(500);
+    });
+});
 
 //DELETE - DELETE
-// !!!!!!!!!!!!!!!!!!
 router.delete("/:id", (req, res) => {
   const idToDelete = req.params.id;
   console.log("idToDelete:", idToDelete);

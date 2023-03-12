@@ -5,7 +5,7 @@ function onReady() {
   //listeners
   $("#addTaskBtn").on("click", addTask);
   //delegating listeners
-  // $("#toDoList").on("click", ".completeBtn", PUT());
+  $("#toDoList").on("click", ".completeBtn", taskComplete);
   $("#toDoList").on("click", ".deleteBtn", taskToDelete);
   //Inital Get
   getTasks();
@@ -61,24 +61,27 @@ function render(response) {
   for (let i of response) {
     console.log("i:", i);
     $("#toDoList").append(
-      `<li><span class="task">${i.task}</span><button data-id:${i.id} data-complete=${i.complete} class="completeBtn">Complete</button><button data-id=${i.id} class="deleteBtn">Delete</button></li>`
+      `<li><span class="task">${i.task}</span><button data-id=${i.id} data-complete=${i.complete} class="completeBtn">Complete</button><button data-id=${i.id} class="deleteBtn">Delete</button></li>`
     );
   }
 }
 
-// //UPDATE - PUT
-// //must grab identifier and data
-// function PUT() {
-//   let newWHAT = { id: "${}", change: "${}" };
-//   $.ajax({ method: "PUT", url: "/task", data: newWHAT })
-//     .then((response) => {
-//       console.log("Successful PUT()");
-//       getTasks();
-//     })
-//     .catch((err) => {
-//       console.log("PUT() Failed:", err);
-//     });
-// }
+//UPDATE - PUT
+//must grab identifier and data
+function taskComplete() {
+  let taskStatus = { taskStat: $(this).data().complete };
+  console.log("taskStatus:", taskStatus);
+  let thisId = $(this).data().id;
+  console.log("thisId", thisId);
+  $.ajax({ method: "PUT", url: `/task/${thisId}`, data: taskStatus })
+    .then((response) => {
+      console.log("Successful PUT()");
+      getTasks();
+    })
+    .catch((err) => {
+      console.log("PUT() Failed:", err);
+    });
+}
 
 //DELETE - DELETE
 function taskToDelete() {
