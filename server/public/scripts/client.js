@@ -5,9 +5,9 @@ function onReady() {
   //listeners
   $("#addTaskBtn").on("click", addTask);
   //delegating listeners
-  // $("").on("", "", PUT());
-  // $("").on("", "", DELETE());
-  // //Inital Get
+  // $("#toDoList").on("click", ".completeBtn", PUT());
+  $("#toDoList").on("click", ".deleteBtn", taskToDelete);
+  //Inital Get
   getTasks();
 }
 //Global Variables
@@ -61,7 +61,7 @@ function render(response) {
   for (let i of response) {
     console.log("i:", i);
     $("#toDoList").append(
-      `<li><span class="task">${i.task}</span><button data-id:${i.id} data-complete=${i.complete} class="complete">Complete</button><button data-id:${i.id} class="delete">Delete</button></li>`
+      `<li><span class="task">${i.task}</span><button data-id:${i.id} data-complete=${i.complete} class="completeBtn">Complete</button><button data-id=${i.id} class="deleteBtn">Delete</button></li>`
     );
   }
 }
@@ -73,20 +73,25 @@ function render(response) {
 //   $.ajax({ method: "PUT", url: "/task", data: newWHAT })
 //     .then((response) => {
 //       console.log("Successful PUT()");
-//       GET();
+//       getTasks();
 //     })
 //     .catch((err) => {
 //       console.log("PUT() Failed:", err);
 //     });
 // }
-// //DELETE - DELETE
-// function DELETE() {
-//   $.ajax({ method: "PUT", url: "/task", data: newWHAT })
-//     .then((response) => {
-//       console.log("Successful DELETE()");
-//       GET();
-//     })
-//     .catch((err) => {
-//       console.log("DELETE() Failed:", err);
-//     });
-// }
+
+//DELETE - DELETE
+function taskToDelete() {
+  let thisID = $(this).data();
+  console.log("thisID", thisID);
+  let idToDelete = thisID.id;
+  console.log("idToDelete:", idToDelete);
+  $.ajax({ method: "DELETE", url: `/task/${idToDelete}` })
+    .then((response) => {
+      console.log("Successful DELETE()");
+      getTasks();
+    })
+    .catch((err) => {
+      console.log("DELETE() Failed:", err);
+    });
+}

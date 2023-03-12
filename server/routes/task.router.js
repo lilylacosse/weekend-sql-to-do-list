@@ -63,18 +63,20 @@ router.get("/", (req, res) => {
 //     });
 // });
 
-// //DELETE - DELETE
-// // !!!!!!!!!!!!!!!!!!
-// router.delete("/", (req, res) => {
-//   const queryText = `;`;
-//   pool
-//     .query(queryText)
-//     .then((response) => {
-//       console.log(`Query SUCCESS! : ${queryText}`);
-//       res.sendStatus(200);
-//     })
-//     .catch((err) => {
-//       console.log(`Query ERROR ${queryText}:`, err);
-//       res.sendStatus(500);
-//     });
-// });
+//DELETE - DELETE
+// !!!!!!!!!!!!!!!!!!
+router.delete("/:id", (req, res) => {
+  const idToDelete = req.params.id;
+  console.log("idToDelete:", idToDelete);
+  const queryText = `DELETE FROM "to-do" WHERE id=$1 ;`;
+  pool
+    .query(queryText, [idToDelete])
+    .then((response) => {
+      console.log(`Query SUCCESS! : ${queryText}`);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(`Query ERROR ${queryText}:`, err);
+      res.sendStatus(500);
+    });
+});
