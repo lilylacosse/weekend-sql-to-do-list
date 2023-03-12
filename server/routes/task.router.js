@@ -1,9 +1,6 @@
 // We need access to all of these node modules to support the functionality in this task.router.js module.
 const express = require("express");
-const app = express();
 const pool = require("../modules/pool");
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }));
 // in express, 'Router()' creates route handlers
 const router = express.Router();
 // we want to export access to express.Router() so we can call the function in our server when the proper mount path is activated. (/task).

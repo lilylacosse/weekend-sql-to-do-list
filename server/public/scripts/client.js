@@ -54,15 +54,25 @@ function getTasks() {
 //       $("").append();
 //     }
 function render(response) {
-  console.log("response:", response);
+  // console.log("response:", response);
   //first get rid of previously rendered values
+  $("#task").val("");
   $("#toDoList").empty();
   // then loop through new data and append to DOM
   for (let i of response) {
     console.log("i:", i);
     $("#toDoList").append(
-      `<li><span class="task">${i.task}</span><button data-id=${i.id} data-complete=${i.complete} class="completeBtn">Complete</button><button data-id=${i.id} class="deleteBtn">Delete</button></li>`
+      `<li id="${i.id}"><span class="task">${i.task}</span>
+      <span><button data-id=${i.id} data-complete=${i.complete} class="completeBtn">Complete</button></span><button data-id=${i.id} class="deleteBtn">Delete</button></li>`
     );
+    // let completeButton =
+    if (`${i.complete}` === `true`) {
+      console.log("WOrkig?:", `${i.complete}`);
+      $(`#${i.id}`).css({
+        "background-color": "#6d6875",
+        color: "#534b5f",
+      });
+    }
   }
 }
 
@@ -77,11 +87,21 @@ function taskComplete() {
     .then((response) => {
       console.log("Successful PUT()");
       getTasks();
+      // renderComplete(response);
     })
     .catch((err) => {
       console.log("PUT() Failed:", err);
     });
 }
+// function renderComplete(response) {
+//   if ($(this).data().id !== false) {
+//     $(".li").css({
+//       "background-color": "#6d6875",
+//       color: "#534b5f",
+//     });
+//     $(".completeBtn").prop("disabled", true);
+//   }
+// }
 
 //DELETE - DELETE
 function taskToDelete() {
