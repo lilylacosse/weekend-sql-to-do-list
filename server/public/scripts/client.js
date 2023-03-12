@@ -63,7 +63,7 @@ function render(response) {
     console.log("i:", i);
     $("#toDoList").append(
       `<li id="${i.id}"><span class="task">${i.task}</span>
-      <span><button data-id=${i.id} data-complete=${i.complete} id="completeBtn${i.id}" class="completeBtn">Complete</button></span><button data-id=${i.id} class="deleteBtn">Delete</button></li>`
+      <span><button data-id=${i.id} data-complete=${i.complete} id="completeBtn${i.id}" class="completeBtn">Complete</button></span><button data-id=${i.id} id="deleteBtn${i.id}" class="deleteBtn">Delete</button></li>`
     );
     // let completeButton =
     if (`${i.complete}` === `true`) {
@@ -73,6 +73,7 @@ function render(response) {
         color: "#534b5f",
       });
       $(`#completeBtn${i.id}`).prop("disabled", true);
+      $(`#deleteBtn${i.id}`).css("color", "black");
     }
   }
 }
