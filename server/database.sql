@@ -1,5 +1,5 @@
 -- Run Create Database command to create a database with the same name as the one coded into the program 
-CREATE DATABASE "weekend-to-do-app";
+CREATE DATABASE "lily_weekend-to-do-app";
 -- Open database and create run this create table command to create appropriate table 
 CREATE TABLE "to-do"(
     "id" SERIAL PRIMARY KEY,
