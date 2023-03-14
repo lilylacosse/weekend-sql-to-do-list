@@ -12,12 +12,11 @@ const taskRouter = require("./routes/task.router");
 // this mount path serves our static files when a user connects to port 5000 on our localhost server
 app.use(express.static("server/public"));
 // When the URL in our request from the client matches the URL in the mount path on the server, app.use directs us into the file located at that URL and calls the function we exported inside of the file we are now located in.
-// Please, dear God, tell me I am somewhat on base with this description.
 //  In this case, calls express.Router() inside of task.router.js
 app.use("/task", taskRouter);
 
 // Start express server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("Listening on Port:", PORT);
 });

@@ -44,7 +44,6 @@ router.get("/", (req, res) => {
 });
 
 //UPDATE - PUT
-// !!!!!!!!!!!!!!!!!!!!
 router.put("/:id", (req, res) => {
   let idToAlter = req.params.id;
   console.log("idToAlter:", idToAlter);
@@ -52,6 +51,7 @@ router.put("/:id", (req, res) => {
   complete = !complete;
   console.log("complete:", complete);
   const queryText = `UPDATE "to-do" SET complete=$1 WHERE id=$2;`;
+  // could ALSO use: "complete" = not complete
   pool
     .query(queryText, [true, idToAlter])
     .then((dbResponse) => {
