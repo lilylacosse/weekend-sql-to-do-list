@@ -1,20 +1,34 @@
 # Weekend SQL To-Do List
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+## Description
+Duration: 12 Hours
+
+My first full-stack app, built client to server side by me! 
+A simple To-Do list app that allows you to track your ongoing tasks.
+
+Deloyed using Heroku and bit.io, check it out: https://still-shore-12376.herokuapp.com/
+
+## Usage
+1. Track tasks
+2. Mark a task complete
+3. Delete old tasks and tasks that are no longer relevant
 
 ## Required Technologies
 
+AJAX
 Node.js
 PostgreSQL
 
-Dependencies include Express, Body-Parser, PG, and nodemon. Please run this command in the terminal to initiate them on your machine:
+Dependencies include:
+Express
+Body-Parser
+PG
+
+To initiate the dependencies on your machine, run:
 npm install
 
-To run the server and automatically refresh it, please run:
-npm run server
+## Thank you Prime Digital Academy for teaching me the skills to successfull code and deloy a full stack app! 
+## Thank you to my husband for feeding me while I undertake this endeavor! 
 
-## Description
-
-Your project description goes here. What problem did you solve? How did you solve it?
-
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Connect 
+Please contact with me with any questions, feedback, or coding tips at lilylacosse@gmail.com
